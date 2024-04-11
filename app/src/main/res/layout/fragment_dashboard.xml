@@ -144,7 +144,7 @@
         app:layout_constraintVertical_bias="0.344" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total:"
@@ -152,10 +152,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="400dp" />
+        tools:layout_editor_absoluteY="400dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/PrecioFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$2"
@@ -163,7 +164,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="263dp"
-        tools:layout_editor_absoluteY="400dp" />
+        tools:layout_editor_absoluteY="400dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button3"
@@ -171,6 +173,7 @@
         android:layout_height="56dp"
         android:text="Aceptar"
         tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="508dp" />
+        tools:layout_editor_absoluteY="508dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
