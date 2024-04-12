@@ -1,6 +1,7 @@
 package com.dsm104desafiopractico2.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dsm104desafiopractico2.adapters.ProductosAdapter
 import com.dsm104desafiopractico2.clases.ListaProductos
 import com.dsm104desafiopractico2.databinding.FragmentHomeBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
@@ -20,7 +25,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private lateinit var database: DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,29 +33,37 @@ class HomeFragment : Fragment() {
     ): View {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val recyclerViewComida: RecyclerView
-        val recyclerViewBebida: RecyclerView
-        recyclerViewComida = binding.recyclerViewComidas
-        recyclerViewBebida = binding.recyclerViewBebidas
+        database = Firebase.database.reference
+        var comidas = ArrayList<ListaProductos>()
+        var bebidas = ArrayList<ListaProductos>()
+        database.child("Productos").get().addOnSuccessListener {
+            it.children.forEach{
+                if(it.child("tipo").value.toString() == "comida"){
+                    comidas.add(ListaProductos(it.key,it.child("nombre").value.toString(),it.child("precio").value.toString().toDouble(),it.child("tipo").value.toString()))
+                }else{
+                    bebidas.add(ListaProductos(it.key,it.child("nombre").value.toString(),it.child("precio").value.toString().toDouble(),it.child("tipo").value.toString()))
+                }
+            }
+            val recyclerViewComida: RecyclerView
+            val recyclerViewBebida: RecyclerView
+            recyclerViewComida = binding.recyclerViewComidas
+            recyclerViewBebida = binding.recyclerViewBebidas
 //        recyclerViewComida.setHasFixedSize(true)
-        recyclerViewComida.layoutManager = LinearLayoutManager(context)
+            recyclerViewComida.layoutManager = LinearLayoutManager(context)
 
 //        recyclerViewBebida.setHasFixedSize(true);
-        recyclerViewBebida.layoutManager = LinearLayoutManager(context)
-        val productos:ArrayList<ListaProductos> = ArrayList()
-        val producto = ListaProductos("Tacos",10.5)
-        productos.add(producto);
-        productos.add(producto);
-        productos.add(producto);
+            recyclerViewBebida.layoutManager = LinearLayoutManager(context)
 
-        val comidasAdapter:ProductosAdapter = ProductosAdapter(context,productos);
-        val bebidasAdapter:ProductosAdapter = ProductosAdapter(context,productos);
+            val comidasAdapter:ProductosAdapter = ProductosAdapter(context,comidas);
+            val bebidasAdapter:ProductosAdapter = ProductosAdapter(context,bebidas);
 
-        recyclerViewComida.adapter = comidasAdapter
-        recyclerViewBebida.adapter = bebidasAdapter
+            recyclerViewComida.adapter = comidasAdapter
+            recyclerViewBebida.adapter = bebidasAdapter
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
 
         return root
     }
