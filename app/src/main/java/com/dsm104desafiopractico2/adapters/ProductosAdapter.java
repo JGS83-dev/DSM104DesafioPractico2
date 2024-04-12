@@ -1,7 +1,5 @@
 package com.dsm104desafiopractico2.adapters;
 
-import static androidx.appcompat.graphics.drawable.DrawableContainerCompat.Api21Impl.getResources;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
