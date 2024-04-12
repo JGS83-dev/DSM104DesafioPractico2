@@ -6,4 +6,7 @@
     <string name="producto">Producto</string>
     <string name="precio">Precio</string>
     <string name="agregar">Agregar</string>
+    <string name="comidas">Comidas</string>
+    <string name="bebidas">Bebidas</string>
+    <string name="menu">Menú</string>
 </resources>

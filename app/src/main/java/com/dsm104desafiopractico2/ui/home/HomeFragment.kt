@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.dsm104desafiopractico2.adapters.ProductosAdapter
+import com.dsm104desafiopractico2.clases.ListaProductos
 import com.dsm104desafiopractico2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -27,11 +31,27 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val recyclerViewComida: RecyclerView
+        val recyclerViewBebida: RecyclerView
+        recyclerViewComida = binding.recyclerViewComidas
+        recyclerViewBebida = binding.recyclerViewBebidas
+//        recyclerViewComida.setHasFixedSize(true)
+        recyclerViewComida.layoutManager = LinearLayoutManager(context)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        recyclerViewBebida.setHasFixedSize(true);
+        recyclerViewBebida.layoutManager = LinearLayoutManager(context)
+        val productos:ArrayList<ListaProductos> = ArrayList()
+        val producto = ListaProductos("Tacos",10.5)
+        productos.add(producto);
+        productos.add(producto);
+        productos.add(producto);
+
+        val comidasAdapter:ProductosAdapter = ProductosAdapter(context,productos);
+        val bebidasAdapter:ProductosAdapter = ProductosAdapter(context,productos);
+
+        recyclerViewComida.adapter = comidasAdapter
+        recyclerViewBebida.adapter = bebidasAdapter
+
         return root
     }
 
