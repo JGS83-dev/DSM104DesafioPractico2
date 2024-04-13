@@ -49,5 +49,6 @@ ShareAlike : si remezcla, transforma o construye a partir del material, debe dis
 Sin restricciones adicionales : no puede aplicar términos legales o medidas tecnológicas que restrinjan legalmente a otros de hacer cualquier cosa que permita la licencia.
 
 ## Complementos
-* [Video Demostrativo] - 
-* [Mockups] -
+* [Video Demostrativo] - https://drive.google.com/file/d/1dg-MQ_hhroEtPUVqxA70VCVqqMx6Ju1P/view?usp=sharing
+* [Mockups] - En la carpete documentacion dentro del repositorio
+* [Documento de funcionamiento] - En la carpete documentacion dentro del repositorio
