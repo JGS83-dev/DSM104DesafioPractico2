@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">DSM104DesafioPractico2</string>
+    <string name="app_name">Antojitos Mexicanos</string>
     <string name="title_home">Menu</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Carrito</string>
+    <string name="title_notifications">Historial</string>
     <string name="producto">Producto</string>
     <string name="precio">Precio</string>
     <string name="agregar">Agregar</string>
     <string name="comidas">Comidas</string>
     <string name="bebidas">Bebidas</string>
     <string name="menu">Menú</string>
+    <string name="comprar">Comprar</string>
 </resources>
