@@ -66,7 +66,6 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("Carrito").child("actual").setValue(producto);
                     Toast.makeText(context, "Producto eliminado exitosamente al carrito", Toast.LENGTH_LONG).show();
                 }
             });

@@ -74,7 +74,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
                 @Override
                 public void onClick(View v) {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("Carrito").child("actual").setValue(producto);
+                    databaseReference.child("Carrito").child("actual").push().setValue(producto);
                     Toast.makeText(context, "Producto añadido exitosamente al carrito", Toast.LENGTH_LONG).show();
                 }
             });

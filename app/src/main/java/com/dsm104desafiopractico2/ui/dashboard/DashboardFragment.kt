@@ -39,7 +39,8 @@ class DashboardFragment : Fragment() {
         database = Firebase.database.reference
         var carrito = ArrayList<ListaProductos>()
         database.child("Carrito").get().addOnSuccessListener {
-        it.children.forEach{
+
+        it.child("actual").children.forEach{
             carrito.add(ListaProductos(it.key,it.child("nombre").value.toString(),it.child("precio").value.toString().toDouble(),it.child("tipo").value.toString()))
         }
             val recyclerViewCarrito: RecyclerView
