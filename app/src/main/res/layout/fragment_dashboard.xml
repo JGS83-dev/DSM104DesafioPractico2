@@ -6,73 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/textDashboard"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="CARRITO"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/PrecioFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$2"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618"
-        tools:ignore="MissingConstraints" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCarrito"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="3"
+            />
 
-    <TextView
-        android:id="@+id/Total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total:"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618"
-        tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnComprar"
-        android:layout_width="117dp"
-        android:layout_height="56dp"
-        android:text="@string/comprar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.801"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/Total"
+                android:layout_width="213dp"
+                android:layout_height="match_parent"
+                android:text="Total:"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCarrito"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:layout_gravity="center_horizontal"
-/>
+            <TextView
+                android:id="@+id/PrecioFinal"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:text="$2"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnComprar"
+            android:layout_width="197dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/comprar"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
