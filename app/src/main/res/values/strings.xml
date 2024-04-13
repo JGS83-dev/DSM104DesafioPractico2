@@ -2,7 +2,7 @@
     <string name="app_name">Antojitos Mexicanos</string>
     <string name="title_home">Menu</string>
     <string name="title_dashboard">Carrito</string>
-    <string name="title_notifications">Historial</string>
+    <string name="title_notifications">Historial de compras</string>
     <string name="producto">Producto</string>
     <string name="precio">Precio</string>
     <string name="agregar">Agregar</string>
@@ -10,4 +10,5 @@
     <string name="bebidas">Bebidas</string>
     <string name="menu">Menú</string>
     <string name="comprar">Comprar</string>
+    <string name="compras">Compra Realizada</string>
 </resources>
