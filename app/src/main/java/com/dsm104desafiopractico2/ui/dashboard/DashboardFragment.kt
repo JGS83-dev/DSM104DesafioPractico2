@@ -54,7 +54,21 @@ class DashboardFragment : Fragment() {
             var btnAgregar = binding.btnComprar;
             btnAgregar.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
-                    database.child("Carrito").child("actual").removeValue()
+
+                    database.child("Carrito").child("actual").get().addOnSuccessListener {
+                        var key = database.child("Historial").push().key.toString()
+                        var productosCompra = ArrayList<ListaProductos>()
+                        it.children.forEach{
+                            //Agregamos a una lista
+                             productosCompra.add(ListaProductos(it.key,it.child("nombre").value.toString(),it.child("precio").value.toString().toDouble(),it.child("tipo").value.toString()))
+                        }
+                        //Insertamos en la base de datos
+                        database.child("Historial").child(key).setValue(productosCompra)
+                        //Vaciamos el carrito
+                        database.child("Carrito").child("actual").removeValue()
+                    }.addOnFailureListener{
+                        Log.e("firebase", "Error writing data", it)
+                    }
                     Toast.makeText(
                         context,
                         "Comprada realizada con exito",
