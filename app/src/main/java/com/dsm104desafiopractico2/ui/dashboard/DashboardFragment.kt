@@ -5,12 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dsm104desafiopractico2.adapters.CarritoAdapter
-import com.dsm104desafiopractico2.adapters.ProductosAdapter
 import com.dsm104desafiopractico2.clases.ListaProductos
 import com.dsm104desafiopractico2.databinding.FragmentDashboardBinding
 import com.google.firebase.database.DatabaseReference
@@ -38,16 +38,30 @@ class DashboardFragment : Fragment() {
 
         database = Firebase.database.reference
         var carrito = ArrayList<ListaProductos>()
+        var total:Double = 0.0
         database.child("Carrito").get().addOnSuccessListener {
-
         it.child("actual").children.forEach{
             carrito.add(ListaProductos(it.key,it.child("nombre").value.toString(),it.child("precio").value.toString().toDouble(),it.child("tipo").value.toString()))
+            total += it.child("precio").value.toString().toDouble()
         }
             val recyclerViewCarrito: RecyclerView
             recyclerViewCarrito = binding.recyclerViewCarrito
             recyclerViewCarrito.layoutManager = LinearLayoutManager(context)
 
             val carritoAdapter: CarritoAdapter = CarritoAdapter(context,carrito);
+            binding.PrecioFinal.text = "$"+total.toString()
+
+            var btnAgregar = binding.btnComprar;
+            btnAgregar.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    database.child("Carrito").child("actual").removeValue()
+                    Toast.makeText(
+                        context,
+                        "Comprada realizada con exito",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
 
             recyclerViewCarrito.adapter = carritoAdapter
         }.addOnFailureListener{

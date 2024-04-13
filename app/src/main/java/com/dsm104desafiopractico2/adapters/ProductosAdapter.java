@@ -43,7 +43,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ListaProductos item = listaItems.get(position);
         holder.txtNombre.setText(item.getNombre());
-        holder.txtPrecio.setText(String.valueOf(item.getPrecio()));
+        holder.txtPrecio.setText("$"+String.valueOf(item.getPrecio()));
         holder.imagen.setImageResource(R.drawable._01_tacos_de_carnitas__carne_asada_y_al_pastor);
         holder.producto = item;
         holder.context = this.context;
@@ -75,7 +75,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.View
                 public void onClick(View v) {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child("Carrito").child("actual").push().setValue(producto);
-                    Toast.makeText(context, "Producto añadido exitosamente al carrito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Producto añadido exitosamente al carrito", Toast.LENGTH_SHORT).show();
                 }
             });
         }
